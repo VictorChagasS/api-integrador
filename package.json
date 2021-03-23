@@ -9,7 +9,7 @@
     "dev:server": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/infra/http/server.ts",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "test": "jest",
-    "start": "node dist/ src/shared/infra/http/server.js"
+    "start": "node dist/src/shared/infra/http/server.js"
   },
   "dependencies": {
     "@types/cors": "^2.8.10",
