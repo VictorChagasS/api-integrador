@@ -34,6 +34,6 @@ app.use(function (err, request, response, next) {
         message: 'Internal server error',
     });
 });
-app.listen(3333, function () {
+app.listen(process.env.PORT || 3333, function () {
     console.log("SERVIDOR LIGOU");
 });

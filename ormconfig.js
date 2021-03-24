@@ -1,4 +1,5 @@
 console.log(process.env.DATABASE_URL)
+console.log(process.env.MONGO_URL)
 module.exports = [
     {
         "type":"postgres",
@@ -17,12 +18,11 @@ module.exports = [
     {
         "name":"mongo",
         "type":"mongodb",
-        "host":"localhost",
-        "port":27017,
+        "url":process.env.MONGO_URL,
         "database" : "mongo_integradordb",
         "useUnifiedTopology":true,
         "entities": [
-            "./src/modules/**/infra/typeorm/schemas/*.ts"
+            "./dist/modules/**/infra/typeorm/schemas/*.js"
           ]
     }
 ]
