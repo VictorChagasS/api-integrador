@@ -11,7 +11,7 @@ describe('ListProviders', () => {
   beforeEach(() => {
     fakeUsersRepository = new FakeUsersRepository();
     fakeCacheProvider = new FakeCacheProvider()
-    listProviders = new ListProviderService(fakeUsersRepository,fakeCacheProvider);
+    listProviders = new ListProviderService(fakeUsersRepository);
   });
 
   it('should be able to list the providers', async () => {
