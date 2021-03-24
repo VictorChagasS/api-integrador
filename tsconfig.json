@@ -16,12 +16,25 @@
       "@config/*":["config/*"] ,
       "@shared/*":["shared/*"] 
       
-    },                          
+    },
+    "plugins":[{
+      "transform":"typescript-transform-paths"
+    }],                         
     "esModuleInterop": true,                
     "experimentalDecorators": true,       
     "emitDecoratorMetadata": true,         
     "skipLibCheck": true,                    
     "forceConsistentCasingInFileNames": true  
-  }
+  },
+   "exclude": [
+    "commitlint.config.js",
+    "coverage",
+    "jest.config.js",
+    "prettier.config.js",
+    "dist",
+    "ormconfig.js"
+    
+
+  ]
 }
 

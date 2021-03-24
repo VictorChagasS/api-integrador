@@ -5,11 +5,12 @@
   "license": "MIT",
   "scripts": {
     "dev": "server",
-    "build": "tsc",
+    "build": "ttsc",
     "dev:server": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/infra/http/server.ts",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "test": "jest",
-    "start": "node dist/src/shared/infra/http/server.js"
+    "start": "ts-node dist/shared/infra/http/server.js"
+    
   },
   "dependencies": {
     "@types/cors": "^2.8.10",
@@ -37,7 +38,9 @@
     "ts-node-dev": "^1.1.1",
     "tsconfig-paths": "^3.9.0",
     "tsyringe": "^4.4.0",
+    "ttypescript": "^1.5.12",
     "typeorm": "^0.2.31",
+    "typescript-transform-paths": "^2.2.3",
     "uuid": "^8.3.2",
     "uuidv4": "^6.2.6"
   },
