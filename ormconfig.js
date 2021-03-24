@@ -3,6 +3,7 @@ module.exports = [
     {
         "type":"postgres",
         "url": process.env.DATABASE_URL,
+      
         "entities": [
             "./dist/modules/**/infra/typeorm/entities/*.js"
           ],
@@ -11,7 +12,7 @@ module.exports = [
         ],
         "cli":{
             "migrationsDir": "./src/shared/typeorm/migrations"
-        }
+        },
     },
     {
         "name":"mongo",
