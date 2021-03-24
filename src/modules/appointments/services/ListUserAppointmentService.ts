@@ -20,13 +20,14 @@ export default class ListUserAppointmentsService {
     @inject('AppointmentsRepository')
     private appointmentsRepository: IAppointmentsRepository,
 
-    @inject('CacheProvider')
-    private cacheProvider: ICacheProvider
+   // @inject('CacheProvider')
+   // private cacheProvider: ICacheProvider
   ) {}
 
   public async execute({ user_id, day, year, month }: IRequest): Promise<Appointment[]> {
     const cacheKey = `user-appointments:${user_id}:${year}-${month}-${day}`
-    let appointments = await this.cacheProvider.recover<Appointment[]>(cacheKey)
+    //let appointments = await this.cacheProvider.recover<Appointment[]>(cacheKey)
+    let appointments = null
   
     if (!appointments) {
       appointments = await this.appointmentsRepository.findAllInDayFromUser({
@@ -36,7 +37,7 @@ export default class ListUserAppointmentsService {
           month
       })
   
-    await this.cacheProvider.save(cacheKey,classToClass(appointments))
+   // await this.cacheProvider.save(cacheKey,classToClass(appointments))
   }
     return appointments
   }

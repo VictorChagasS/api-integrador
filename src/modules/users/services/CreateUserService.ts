@@ -23,8 +23,8 @@ class CreateUserService {
         @inject('HashProvider')
         private hashProvider: IHashProvider,
 
-        @inject('CacheProvider')
-        private cacheProvider: ICacheProvider
+        //@inject('CacheProvider')
+        //private cacheProvider: ICacheProvider
         ){}
     async execute({name, email, password, isBarber}: IRequest): Promise<User>{
 
@@ -34,7 +34,6 @@ class CreateUserService {
     if (checkUserExists){
         throw new AppError('Email adress already used')
     }
-
     const hashedPassword = await this.hashProvider.generateHash(password)
     const user = await this.usersRepository.create({
         name,
@@ -44,7 +43,7 @@ class CreateUserService {
 
     })
 
-    await this.cacheProvider.invalidatePrefix('provider-list')
+    //await this.cacheProvider.invalidatePrefix('provider-list')
 
     return user
     }

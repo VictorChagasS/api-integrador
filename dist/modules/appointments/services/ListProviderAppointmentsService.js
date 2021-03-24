@@ -55,11 +55,9 @@ var tsyringe_1 = require("tsyringe");
 var IAppointmentsRepository_1 = __importDefault(require("../repositories/IAppointmentsRepository"));
 var ICacheProvider_1 = __importDefault(require("../../../shared/container/providers/CacheProvider/models/ICacheProvider"));
 var Appointment_1 = __importDefault(require("../infra/typeorm/entities/Appointment"));
-var class_transformer_1 = require("class-transformer");
 var ListProviderAppointmentsService = /** @class */ (function () {
-    function ListProviderAppointmentsService(appointmentsRepository, cacheProvider) {
+    function ListProviderAppointmentsService(appointmentsRepository) {
         this.appointmentsRepository = appointmentsRepository;
-        this.cacheProvider = cacheProvider;
     }
     ListProviderAppointmentsService.prototype.execute = function (_a) {
         var provider_id = _a.provider_id, day = _a.day, year = _a.year, month = _a.month;
@@ -69,12 +67,8 @@ var ListProviderAppointmentsService = /** @class */ (function () {
                 switch (_b.label) {
                     case 0:
                         cacheKey = "provider-appointments:" + provider_id + ":" + year + "-" + month + "-" + day;
-                        return [4 /*yield*/, this.cacheProvider.recover(cacheKey)
-                            //let appointments = null;
-                        ];
-                    case 1:
-                        appointments = _b.sent();
-                        if (!!appointments) return [3 /*break*/, 4];
+                        appointments = null;
+                        if (!!appointments) return [3 /*break*/, 2];
                         return [4 /*yield*/, this.appointmentsRepository.findAllInDayFromProvider({
                                 provider_id: provider_id,
                                 day: day,
@@ -82,16 +76,12 @@ var ListProviderAppointmentsService = /** @class */ (function () {
                                 month: month,
                             })
                             //console.log('BUSCOU DOS PROVIDERS')
+                            //await this.cacheProvider.save(cacheKey,classToClass(appointments))
                         ];
-                    case 2:
+                    case 1:
                         appointments = _b.sent();
-                        //console.log('BUSCOU DOS PROVIDERS')
-                        return [4 /*yield*/, this.cacheProvider.save(cacheKey, class_transformer_1.classToClass(appointments))];
-                    case 3:
-                        //console.log('BUSCOU DOS PROVIDERS')
-                        _b.sent();
-                        _b.label = 4;
-                    case 4: return [2 /*return*/, appointments];
+                        _b.label = 2;
+                    case 2: return [2 /*return*/, appointments];
                 }
             });
         });
@@ -99,8 +89,7 @@ var ListProviderAppointmentsService = /** @class */ (function () {
     ListProviderAppointmentsService = __decorate([
         tsyringe_1.injectable(),
         __param(0, tsyringe_1.inject('AppointmentsRepository')),
-        __param(1, tsyringe_1.inject('CacheProvider')),
-        __metadata("design:paramtypes", [Object, Object])
+        __metadata("design:paramtypes", [Object])
     ], ListProviderAppointmentsService);
     return ListProviderAppointmentsService;
 }());

@@ -54,7 +54,7 @@ describe('CreateAppointment', function () {
         fakeAppointmentsRepository = new FakeAppointmentsRepository_1.default();
         fakeNotificationsRepository = new FakeNotificationsRepository_1.default();
         fakeCacheProvider = new fakeCacheProvider_1.default();
-        createAppointment = new CreateAppointmentService_1.default(fakeAppointmentsRepository, fakeNotificationsRepository, fakeCacheProvider);
+        createAppointment = new CreateAppointmentService_1.default(fakeAppointmentsRepository, fakeNotificationsRepository);
     });
     it('should be able to create a new appointment', function () { return __awaiter(void 0, void 0, void 0, function () {
         var appointment;

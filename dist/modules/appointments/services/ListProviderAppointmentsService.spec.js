@@ -49,7 +49,7 @@ describe('ListProviderAppointments', function () {
     beforeEach(function () {
         fakeAppointmentsRepository = new FakeAppointmentsRepository_1.default();
         fakeCacheProvider = new fakeCacheProvider_1.default();
-        listProviderAppointments = new ListProviderAppointmentsService_1.default(fakeAppointmentsRepository, fakeCacheProvider);
+        listProviderAppointments = new ListProviderAppointmentsService_1.default(fakeAppointmentsRepository);
     });
     it('should be able to list the appointments on a specific day', function () { return __awaiter(void 0, void 0, void 0, function () {
         var appointment1, appointment2, appointments;

@@ -14,7 +14,7 @@ describe('CreateUser',  () => {
         fakeUsersRepository = new FakeUsersRepository()
         fakeHashProvider = new FakeHashProvider()
         fakeCacheProvider = new FakeCacheProvider()
-        createUser = new CreateUserService(fakeUsersRepository,fakeHashProvider,fakeCacheProvider)
+        createUser = new CreateUserService(fakeUsersRepository,fakeHashProvider)
     })
     it('should be able to create a new user', async ()=>{
       

@@ -58,10 +58,9 @@ var IUsersRepository_1 = __importDefault(require("../repositories/IUsersReposito
 var IHashProvider_1 = __importDefault(require("../providers/HashProvider/models/IHashProvider"));
 var ICacheProvider_1 = __importDefault(require("../../../shared/container/providers/CacheProvider/models/ICacheProvider"));
 var CreateUserService = /** @class */ (function () {
-    function CreateUserService(usersRepository, hashProvider, cacheProvider) {
+    function CreateUserService(usersRepository, hashProvider) {
         this.usersRepository = usersRepository;
         this.hashProvider = hashProvider;
-        this.cacheProvider = cacheProvider;
     }
     CreateUserService.prototype.execute = function (_a) {
         var name = _a.name, email = _a.email, password = _a.password, isBarber = _a.isBarber;
@@ -83,12 +82,12 @@ var CreateUserService = /** @class */ (function () {
                                 email: email,
                                 password: hashedPassword,
                                 isBarber: isBarber
-                            })];
+                            })
+                            //await this.cacheProvider.invalidatePrefix('provider-list')
+                        ];
                     case 3:
                         user = _b.sent();
-                        return [4 /*yield*/, this.cacheProvider.invalidatePrefix('provider-list')];
-                    case 4:
-                        _b.sent();
+                        //await this.cacheProvider.invalidatePrefix('provider-list')
                         return [2 /*return*/, user];
                 }
             });
@@ -98,8 +97,7 @@ var CreateUserService = /** @class */ (function () {
         tsyringe_1.injectable(),
         __param(0, tsyringe_1.inject('UsersRepository')),
         __param(1, tsyringe_1.inject('HashProvider')),
-        __param(2, tsyringe_1.inject('CacheProvider')),
-        __metadata("design:paramtypes", [Object, Object, Object])
+        __metadata("design:paramtypes", [Object, Object])
     ], CreateUserService);
     return CreateUserService;
 }());

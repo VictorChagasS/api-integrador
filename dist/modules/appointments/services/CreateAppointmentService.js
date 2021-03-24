@@ -60,10 +60,9 @@ var AppError_1 = __importDefault(require("../../../shared/errors/AppError"));
 var INotificationsRepository_1 = __importDefault(require("../../notifications/repositories/INotificationsRepository"));
 var ICacheProvider_1 = __importDefault(require("../../../shared/container/providers/CacheProvider/models/ICacheProvider"));
 var CreateAppointmentService = /** @class */ (function () {
-    function CreateAppointmentService(appointmentsRepository, notificationsRepository, cacheProvider) {
+    function CreateAppointmentService(appointmentsRepository, notificationsRepository) {
         this.appointmentsRepository = appointmentsRepository;
         this.notificationsRepository = notificationsRepository;
-        this.cacheProvider = cacheProvider;
     }
     CreateAppointmentService.prototype.execute = function (_a) {
         var date = _a.date, provider_id = _a.provider_id, user_id = _a.user_id;
@@ -99,15 +98,14 @@ var CreateAppointmentService = /** @class */ (function () {
                         return [4 /*yield*/, this.notificationsRepository.create({
                                 recipient_id: provider_id,
                                 content: "Novo agendamento para dia " + dateFormated
-                            })];
+                            })
+                            //await this.cacheProvider.invalidate(`provider-appointments:${provider_id}:${format(appointmentDate, 'yyyy-M-d')}`)
+                            //await this.cacheProvider.invalidate(`user-appointments:${user_id}:${format(appointmentDate, 'yyyy-M-d')}`)
+                        ];
                     case 3:
                         _b.sent();
-                        return [4 /*yield*/, this.cacheProvider.invalidate("provider-appointments:" + provider_id + ":" + date_fns_1.format(appointmentDate, 'yyyy-M-d'))];
-                    case 4:
-                        _b.sent();
-                        return [4 /*yield*/, this.cacheProvider.invalidate("user-appointments:" + user_id + ":" + date_fns_1.format(appointmentDate, 'yyyy-M-d'))];
-                    case 5:
-                        _b.sent();
+                        //await this.cacheProvider.invalidate(`provider-appointments:${provider_id}:${format(appointmentDate, 'yyyy-M-d')}`)
+                        //await this.cacheProvider.invalidate(`user-appointments:${user_id}:${format(appointmentDate, 'yyyy-M-d')}`)
                         return [2 /*return*/, appointment];
                 }
             });
@@ -117,8 +115,7 @@ var CreateAppointmentService = /** @class */ (function () {
         tsyringe_1.injectable(),
         __param(0, tsyringe_1.inject('AppointmentsRepository')),
         __param(1, tsyringe_1.inject('NotificationsRepository')),
-        __param(2, tsyringe_1.inject('CacheProvider')),
-        __metadata("design:paramtypes", [Object, Object, Object])
+        __metadata("design:paramtypes", [Object, Object])
     ], CreateAppointmentService);
     return CreateAppointmentService;
 }());

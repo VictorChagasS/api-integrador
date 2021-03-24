@@ -23,8 +23,8 @@ class CreateAppointmentService {
         @inject('NotificationsRepository')
         private notificationsRepository: INotificationsRepository,
 
-        @inject('CacheProvider')
-        private cacheProvider: ICacheProvider
+        //@inject('CacheProvider')
+        //private cacheProvider: ICacheProvider
         )
         {}
 
@@ -61,8 +61,8 @@ class CreateAppointmentService {
             content:`Novo agendamento para dia ${dateFormated}`
         })
         
-        await this.cacheProvider.invalidate(`provider-appointments:${provider_id}:${format(appointmentDate, 'yyyy-M-d')}`)
-        await this.cacheProvider.invalidate(`user-appointments:${user_id}:${format(appointmentDate, 'yyyy-M-d')}`)
+        //await this.cacheProvider.invalidate(`provider-appointments:${provider_id}:${format(appointmentDate, 'yyyy-M-d')}`)
+        //await this.cacheProvider.invalidate(`user-appointments:${user_id}:${format(appointmentDate, 'yyyy-M-d')}`)
       
       
 

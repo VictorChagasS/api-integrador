@@ -15,7 +15,7 @@ describe('CreateAppointment',  () => {
         fakeAppointmentsRepository = new FakeAppointmentsRepository()
         fakeNotificationsRepository = new FakeNotificationsRepository()
         fakeCacheProvider = new FakeCacheProvider()
-        createAppointment = new CreateAppointmentService(fakeAppointmentsRepository,fakeNotificationsRepository,fakeCacheProvider)
+        createAppointment = new CreateAppointmentService(fakeAppointmentsRepository,fakeNotificationsRepository)
 
     })
     it('should be able to create a new appointment', async ()=>{

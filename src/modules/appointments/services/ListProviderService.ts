@@ -15,18 +15,19 @@ export default class ListProfileService {
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
 
-    @inject('CacheProvider')
-    private cacheProvider: ICacheProvider
+    //@inject('CacheProvider')
+    //private cacheProvider: ICacheProvider
   ) {}
 
   public async execute({ user_id }: IRequest): Promise<User[]> {
-    let users = await this.cacheProvider.recover<User[]>(`provider-list:${user_id}`)
+    //let users = await this.cacheProvider.recover<User[]>(`provider-list:${user_id}`)
+    let users = null
 
     if (!users){
     users = await this.usersRepository.findAllProviders({except_user_id: user_id,});
     //console.log('A query no banco foi feita')
 
-    await this.cacheProvider.save(`provider-list:${user_id}`, classToClass(users))
+    //await this.cacheProvider.save(`provider-list:${user_id}`, classToClass(users))
     }
     return users;
   }

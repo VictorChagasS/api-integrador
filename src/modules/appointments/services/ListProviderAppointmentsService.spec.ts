@@ -11,7 +11,7 @@ describe('ListProviderAppointments', () => {
   beforeEach(() => {
       fakeAppointmentsRepository = new FakeAppointmentsRepository()
       fakeCacheProvider = new FakeCacheProvider()
-      listProviderAppointments = new ListProviderAppointmentsService(fakeAppointmentsRepository,fakeCacheProvider);
+      listProviderAppointments = new ListProviderAppointmentsService(fakeAppointmentsRepository);
   });
 
   it('should be able to list the appointments on a specific day', async () => {

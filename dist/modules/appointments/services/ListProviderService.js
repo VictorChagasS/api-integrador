@@ -52,7 +52,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var tsyringe_1 = require("tsyringe");
-var class_transformer_1 = require("class-transformer");
 var ICacheProvider_1 = __importDefault(require("../../../shared/container/providers/CacheProvider/models/ICacheProvider"));
 var IUsersRepository_1 = __importDefault(require("../../users/repositories/IUsersRepository"));
 var User_1 = __importDefault(require("../../users/infra/typeorm/entities/User"));
@@ -67,20 +66,14 @@ var ListProfileService = /** @class */ (function () {
             var users;
             return __generator(this, function (_b) {
                 switch (_b.label) {
-                    case 0: return [4 /*yield*/, this.cacheProvider.recover("provider-list:" + user_id)];
+                    case 0:
+                        users = null;
+                        if (!!users) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.usersRepository.findAllProviders({ except_user_id: user_id, })];
                     case 1:
                         users = _b.sent();
-                        if (!!users) return [3 /*break*/, 4];
-                        return [4 /*yield*/, this.usersRepository.findAllProviders({ except_user_id: user_id, })];
-                    case 2:
-                        users = _b.sent();
-                        //console.log('A query no banco foi feita')
-                        return [4 /*yield*/, this.cacheProvider.save("provider-list:" + user_id, class_transformer_1.classToClass(users))];
-                    case 3:
-                        //console.log('A query no banco foi feita')
-                        _b.sent();
-                        _b.label = 4;
-                    case 4: return [2 /*return*/, users];
+                        _b.label = 2;
+                    case 2: return [2 /*return*/, users];
                 }
             });
         });

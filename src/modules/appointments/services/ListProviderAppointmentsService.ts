@@ -21,14 +21,14 @@ export default class ListProviderAppointmentsService {
     @inject('AppointmentsRepository')
     private appointmentsRepository: IAppointmentsRepository,
 
-    @inject('CacheProvider')
-    private cacheProvider: ICacheProvider
+    //@inject('CacheProvider')
+    //private cacheProvider: ICacheProvider
   ) {}
 
   public async execute({ provider_id, day, year, month }: IRequest): Promise<Appointment[]> {
     const cacheKey = `provider-appointments:${provider_id}:${year}-${month}-${day}`
-    let appointments = await this.cacheProvider.recover<Appointment[]>(cacheKey)
-    //let appointments = null;
+    //let appointments = await this.cacheProvider.recover<Appointment[]>(cacheKey)
+    let appointments = null;
     if (!appointments) {
       appointments = await this.appointmentsRepository.findAllInDayFromProvider({
         provider_id,
@@ -37,7 +37,7 @@ export default class ListProviderAppointmentsService {
         month,
     })
     //console.log('BUSCOU DOS PROVIDERS')
-    await this.cacheProvider.save(cacheKey,classToClass(appointments))
+    //await this.cacheProvider.save(cacheKey,classToClass(appointments))
     }
     
 

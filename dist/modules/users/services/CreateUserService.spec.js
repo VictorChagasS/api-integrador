@@ -54,7 +54,7 @@ describe('CreateUser', function () {
         fakeUsersRepository = new FakeUsersRepository_1.default();
         fakeHashProvider = new FakeHashProvider_1.default();
         fakeCacheProvider = new fakeCacheProvider_1.default();
-        createUser = new CreateUserService_1.default(fakeUsersRepository, fakeHashProvider, fakeCacheProvider);
+        createUser = new CreateUserService_1.default(fakeUsersRepository, fakeHashProvider);
     });
     it('should be able to create a new user', function () { return __awaiter(void 0, void 0, void 0, function () {
         var user;
